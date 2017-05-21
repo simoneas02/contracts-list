@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import ajax from '@fdaciuk/ajax';
+import ContractRows from './ContractRows'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list:[]
+      list: [],
+      staticList: []
     };
-  };
-
-  componentDidMount() {
-    this.loadJSON();
   };
 
   loadJSON() {
     ajax().get('contracts.json').then((response) => {
-      this.setState({list: response.contracts})
+      this.setState({ list: response.contracts });
+      this.setState({ staticList: response.contracts});
     });
   };
+  
+  componentDidMount() {
+    this.loadJSON();
+  };
+
+  searchText(e) {
+    const searchTextCleaned = e.target.value.trim().toLowerCase();
+
+    if(searchTextCleaned.length > 0) {
+
+      const filterContractList = this.state.staticList.filter((contract) => {
+        const searchTextInnerContract = contract.Comprador.toLowerCase().match(searchTextCleaned);
+        
+        return searchTextInnerContract;
+      });
+
+      this.setState({ list: filterContractList });
+
+    } else {
+
+      this.setState({ list: this.state.staticList });
+    };
+  }
 
   render() {
-    let contractsList = this.state.list.map((contract)=> {
-      return (
-        <tr key = { contract.Código }>
-          <td>{ contract.Código }</td>
-          <td>{ contract.Comprador }</td>
-          <td>{ contract.Vendedor }</td>
-        </tr>
-        )
-    });
-
     return (
       <div>
 
@@ -37,8 +49,15 @@ class App extends Component {
             <h1>Contratos</h1>
 
             <div>
-              <input type="search" placeholder="Localizar contrato"/>
-              <button >Pesquisar</button>
+              <select>
+                <option value="codigo">Código</option>
+                <option value="data-acordo">Data acordo comercial</option>
+                <option value="natureza">Natureza</option>
+                <option value="comprador">Comprador</option>
+                <option value="vendedor">Vendedor</option>
+              </select>
+
+              <input onChange={ this.searchText.bind(this) } placeholder="Localizar contrato"/>
             </div>
 
              <div>
@@ -60,9 +79,7 @@ class App extends Component {
                   <th><button>></button>Vendedor<button>x</button></th>
                 </tr>
               </thead>
-              <tbody>
-                { contractsList }
-              </tbody>
+                <ContractRows list= { this.state.list } />
             </table>
           </main>
 
