@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
+import ajax from '@fdaciuk/ajax';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list:[]
+    };
+  };
+
+  componentDidMount() {
+    this.loadJSON();
+  };
+
+  loadJSON() {
+    ajax().get('contracts.json').then((response) => {
+      this.setState({list: response.contracts})
+    });
+  };
+
   render() {
+    let contractsList = this.state.list.map((contract)=> {
+      return (
+        <tr key = { contract.Código }>
+          <td>{ contract.Código }</td>
+          <td>{ contract.Comprador }</td>
+          <td>{ contract.Vendedor }</td>
+        </tr>
+        )
+    });
+
     return (
       <div>
-        <header></header>
 
           <main>
             <h1>Contratos</h1>
@@ -31,39 +58,14 @@ class App extends Component {
                   <th><button>></button>Código<button>x</button></th>
                   <th><button>></button>Comprador<button>x</button></th>
                   <th><button>></button>Vendedor<button>x</button></th>
-                  <th><button>></button>Status aprovação<button>x</button></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>123/2012</td>
-                  <td>Capibaribe Energia</td>
-                  <td>Contoso Comercializadora</td>
-                  <td>Aprovado</td>
-                </tr>
-                <tr>
-                  <td>123/2012</td>
-                  <td>Capibaribe Energia</td>
-                  <td>Contoso Comercializadora</td>
-                  <td>Aprovado</td>
-                </tr>
-                <tr>
-                  <td>123/2012</td>
-                  <td>Capibaribe Energia</td>
-                  <td>Contoso Comercializadora</td>
-                  <td>Aprovado</td>
-                </tr>
-                <tr>
-                  <td>123/2012</td>
-                  <td>Capibaribe Energia</td>
-                  <td>Contoso Comercializadora</td>
-                  <td>Aprovado</td>
-                </tr>
+                { contractsList }
               </tbody>
             </table>
           </main>
 
-          <footer></footer>
       </div>
     );
   }
