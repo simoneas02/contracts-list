@@ -44,6 +44,30 @@ class App extends Component {
     };
   }
 
+  sortRowsUp(column) {
+    const list = this.state.list;
+
+    list.sort((a, b) => {
+      if(a[column] > b[column]) return 1;
+      if(a[column] < b[column]) return -1;
+      return 0;
+    });
+    
+    this.setState({ list: list});
+  }
+
+  sortRowsDown(column) {
+    const list = this.state.list;
+
+    list.sort((a, b) => {
+      if(a[column] > b[column]) return -1;
+      if(a[column] < b[column]) return 1;
+      return 0;
+    });
+    
+    this.setState({ list: list});
+  }
+
   render() {
     return (
       <div>
@@ -75,9 +99,24 @@ class App extends Component {
             <table>
               <thead>
                 <tr>
-                  <th><button>></button>Código<button>x</button></th>
-                  <th><button>></button>Comprador<button>x</button></th>
-                  <th><button>></button>Vendedor<button>x</button></th>
+                  <th>
+                    <button onClick={ this.sortRowsUp.bind(this, "Código") }>▲</button>
+                    <button onClick={ this.sortRowsDown.bind(this, "Código") }>▼</button>
+                    Código
+                    <button>✖️</button>
+                  </th>
+                  <th>
+                    <button onClick={ this.sortRowsUp.bind(this, "Comprador") }>▲</button>
+                    <button onClick={ this.sortRowsDown.bind(this, "Comprador") }>▼</button>
+                    Comprador
+                    <button>✖️</button>
+                  </th>
+                  <th>
+                    <button onClick={ this.sortRowsUp.bind(this, "Vendedor") }>▲</button>
+                    <button onClick={ this.sortRowsDown.bind(this, "Vendedor") }>▼</button>
+                    Vendedor
+                    <button>✖️</button>
+                  </th>
                 </tr>
               </thead>
                 <ContractRows list= { this.state.list } />
