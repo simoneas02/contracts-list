@@ -1,6 +1,6 @@
 # Lista de Contratos
 
-> Este projeto é apenas para fins de processo seletivo para a vaga de Engenheiro de Software Front-End.
+> :cyclone: :raising_hand: Este projeto é apenas para fins de processo seletivo para a vaga de Engenheiro de Software Front-End.
 
 ## Inicie o projeto localmente
 
