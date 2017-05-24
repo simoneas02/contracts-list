@@ -13,6 +13,7 @@ class ContractRows extends Component {
              <td key = { contract[column.name] }>{ contract[column.name] }</td>
              );
         }
+        return null;
       });
 
       return (

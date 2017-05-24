@@ -92,33 +92,49 @@ class App extends Component {
     this.setState({ listColumn: listColumn });
   }
 
+  removeColumn(columnName) {
+    const list = this.state.listColumn.map((column) => {
+      if(column.name === columnName) {
+          return {
+            name: column.name,
+            isActive: false
+          };
+      };
+      return {
+         name: column.name,
+         isActive: column.isActive
+      };
+    });
+    this.setState({ listColumn: list });
+  };
+
   render() {
     const noActiveColums = this.state.listColumn.map((column) => {
       if(!column.isActive) {
-          return (<option value={ column.name }>{ column.name }</option>);
+          return (<option key={ column.name } value={ column.name }>{ column.name }</option>);
         }
-        return;
+        return null;
     });
 
     const activeColums = this.state.listColumn.map((column) => {
       if(column.isActive) {
-          return (<option value={ column.name }>{ column.name }</option>);
+          return (<option key={ column.name } value={ column.name }>{ column.name }</option>);
         }
-        return;
+        return null;
     });
 
     const columnHeaders = this.state.listColumn.map((column)=> {
       if(column.isActive) {
           return (
-            <th>
+            <th key={ column.name }>
               <button onClick={ this.sortRowsUp.bind(this, column.name) }>▲</button>
               <button onClick={ this.sortRowsDown.bind(this, column.name) }>▼</button>
               {column.name}
-              <button>✖️</button>
+              <button onClick={ this.removeColumn.bind(this, column.name) }>✖️</button>
             </th>
           );
         }
-        return;
+        return null;
     })
 
     return (
