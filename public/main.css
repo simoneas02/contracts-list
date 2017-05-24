@@ -2,3 +2,7 @@
   color: #ffc0cb;
   width: 200px;
 }
+.contractDialog {
+  background: #ffc0cb;
+  position: absolute;
+}
