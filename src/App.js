@@ -108,6 +108,22 @@ class App extends Component {
     this.setState({ listColumn: list });
   };
 
+  addColumn(columnName) {
+    const list = this.state.listColumn.map((column) => {
+      if(column.name === columnName.value) {
+          return {
+            name: column.name,
+            isActive: true
+          }; 
+      };
+      return {
+         name: column.name,
+         isActive: column.isActive
+      };
+    });
+    this.setState({ listColumn: list });
+  };
+
   render() {
     const noActiveColums = this.state.listColumn.map((column) => {
       if(!column.isActive) {
@@ -150,8 +166,8 @@ class App extends Component {
             </div>
 
              <div>
-              <select>{ noActiveColums } </select>
-              <button onClick={ this.listAllColumn.bind(this) } >➕</button>
+              <select ref="columnName">{ noActiveColums } </select>
+              <button onClick={ this.addColumn.bind(this, this.refs.columnName) } >➕</button>
             </div>
 
             <table>
