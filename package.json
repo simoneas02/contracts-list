@@ -5,6 +5,7 @@
   "dependencies": {
     "@fdaciuk/ajax": "^2.1.5",
     "concurrently": "^3.4.0",
+    "immutability-helper": "^2.2.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
