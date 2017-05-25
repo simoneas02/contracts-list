@@ -15,6 +15,7 @@ class App extends Component {
   loadJSON() {
     ajax().get('contracts.json').then((response) => {
       response.contracts.forEach((contract) => {
+        contract.Key = Math.random().toString();
         const listKeys = Object.keys(contract);
         listKeys.forEach((key) => {
           const newKey = key.toLowerCase().replace(/\s?/g, "").replace(/ó/, "o").replace(/í/, "i").replace(/ê/, "e").replace(/ç/, "c").replace(/ã/, "a");
@@ -22,6 +23,7 @@ class App extends Component {
           delete contract[key];
         })
       })
+      console.log(response.contracts)
       this.setState({ list: response.contracts });
       this.setState({ staticList: response.contracts});
       this.listAllColumn();
@@ -34,7 +36,7 @@ class App extends Component {
 
   updateList(newContract) {
     const list = this.state.list.map((contract) => {
-      if(contract.codigo === newContract.codigo) {
+      if(contract.key === newContract.key) {
         return newContract;
       } else {
         return contract;
