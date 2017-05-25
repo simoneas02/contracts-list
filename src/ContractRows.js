@@ -5,7 +5,8 @@ class ContractRows extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        contract: []
+        contract: [],
+        isEditable: false
       };
   };
 
@@ -16,14 +17,21 @@ class ContractRows extends Component {
     this.setState({ contract: contract[0] });
   };
 
-   updateInput(e) {
+   updateInput(columnName) {
     const contract = this.state.contract;
+    const value = this.refs[columnName];
 
-    const contractUpdated = update(contract, { $merge: {codigo: e.target.value} } );
+    const contractUpdated = update(contract, { $merge: {[columnName]: value.value }} );
     this.setState({ contract: contractUpdated })
   };
 
-
+  editList() {
+    this.setState({ isEditable: true });
+  }
+  
+  resetList() {
+    this.setState({ isEditable: false });
+  }
 
   render() {
     const contractsList = this.props.list.map((contract)=> {
@@ -45,15 +53,28 @@ class ContractRows extends Component {
     });
 
     const itemsList = this.props.columns.map((item) => {
-       return (
-         <div>{ item.name }: { this.state.contract[item.name] }</div>
-       )
+      if(!this.state.isEditable){
+        return (
+          <div>{ item.name }: { this.state.contract[item.name] }</div>
+        )
+      } else {
+         return ( 
+          <div>{ item.name }:
+            <input type="text" 
+                   ref={ item.name }
+                   value={ this.state.contract[item.name] } 
+                   onChange={ this.updateInput.bind(this, item.name) } />
+          </div>
+         );
+      };
     });
 
     return(
       <tbody>
         { contractsList }
         <div className="contractDialog">
+          <button onClick={ this.editList.bind(this) }>📝</button>
+          <button onClick={ this.resetList.bind(this) }>reset</button>
           { itemsList }
         </div>
       </tbody>
