@@ -6,7 +6,8 @@ class ContractRows extends Component {
     super(props);
       this.state = {
         contract: [],
-        isEditable: false
+        isEditable: false,
+        isVisible: false
       };
   };
 
@@ -15,6 +16,7 @@ class ContractRows extends Component {
       return (contractNumber === contract.codigo);
     });
     this.setState({ contract: contract[0] });
+    this.setState({ isVisible: true });
   };
 
    updateInput(columnName) {
@@ -27,11 +29,12 @@ class ContractRows extends Component {
 
   editList() {
     this.setState({ isEditable: true });
-  }
+  };
   
-  resetList() {
+  closeList() {
+    this.setState({ isVisible: false });
     this.setState({ isEditable: false });
-  }
+  };
 
   render() {
     const contractsList = this.props.list.map((contract)=> {
@@ -69,14 +72,23 @@ class ContractRows extends Component {
       };
     });
 
+    const contractDialog = () => {
+      if(this.state.isVisible) {
+        return (
+          <div className="contractDialog">
+            <button onClick={ this.editList.bind(this) }>edite</button>
+            <button onClick={ this.closeList.bind(this) }>x</button>
+            <button onClick={ this.props.updatelist.bind(this, this.state.contract) }>salvar</button>
+            { itemsList }
+          </div>
+        );
+      };
+    };
+
     return(
       <tbody>
         { contractsList }
-        <div className="contractDialog">
-          <button onClick={ this.editList.bind(this) }>📝</button>
-          <button onClick={ this.resetList.bind(this) }>reset</button>
-          { itemsList }
-        </div>
+        { contractDialog() }
       </tbody>
     );
   }

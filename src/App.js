@@ -32,6 +32,17 @@ class App extends Component {
     this.loadJSON();
   };
 
+  updateList(newContract) {
+    const list = this.state.list.map((contract) => {
+      if(contract.codigo === newContract.codigo) {
+        return newContract;
+      } else {
+        return contract;
+      }
+    })
+    this.setState({ list: list });
+  };
+
   searchText(e) {
     const searchColumn = this.refs.searchColumn.value;
     const searchTextCleaned = e.target.value.trim().toLowerCase();
@@ -177,7 +188,8 @@ class App extends Component {
                 </tr>
               </thead>
                 <ContractRows list= { this.state.list }
-                              columns= { this.state.listColumn } />
+                              columns= { this.state.listColumn }
+                              updatelist= { this.updateList.bind(this)} />
             </table>
           </main>
 
