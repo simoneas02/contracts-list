@@ -2,6 +2,9 @@
 
 > :cyclone: :raising_hand: Este projeto é apenas para fins de processo seletivo para a vaga de Engenheiro de Software Front-End.
 
+## Acesse [o projeto online](https://simoneas02.github.io/contracts-list/)
+![Demonstração do Sistema](docs/demo.gif)
+
 ## Inicie o projeto localmente
 
 **0 -** instale as dependências básicas
@@ -24,8 +27,9 @@ $ npm start
 ```
 ## Tarefas Automatizadas
 
-- `$ npm start` - Run development mode 
-- `$ npm run build` - Create an optimized production build
+- `$ npm start` - Inicia o modo de desenvolvimento
+- `$ npm run build` - Gera um build otimizado para produção
+- `$ npm run deploy` - Automatiza o deploy para Github Pages
 
 ## Stack
 
@@ -40,14 +44,17 @@ $ npm start
 	.
 	├── public/
 	|   ├── index.html
+	|   ├──	contracts.json
 	|   └── main.css
 	├── src/
+	|   ├── icons/	
 	|   ├── main.styl
 	|   ├── App.js
+	|   ├──ContractRows.js
+	|   ├──main.styl
 	|   └── index.js
 	├── .editorconfig
 	├── .gitignore
-	├── .travis.yml
 	├── package.json
 	├── CONTRIBUTING.md
 	├── LICENSE.md
