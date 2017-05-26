@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
+import edit from './icons/edit.svg'
+import save from './icons/save.svg'
+import close from './icons/close.svg'
 
 class ContractRows extends Component {
   constructor(props) {
@@ -44,30 +47,38 @@ class ContractRows extends Component {
 
         if(column.isActive) {
            return (
-             <td key = { contract[column.name] }>{ contract[column.name] }</td>
+             <td className="column-cell" key = { contract[column.name] }>{ contract[column.name] }</td>
              );
         }
         return null;
       });
 
       return (
-        <tr key = { contract.codigo } onClick={ this.showContract.bind(this, contract.codigo) }>{ columnsList }</tr>
+        <tr className="contract-row" key = { contract.codigo } onClick={ this.showContract.bind(this, contract.codigo) }>{ columnsList }</tr>
         )
     });
 
     const itemsList = this.props.columns.map((item) => {
       if(!this.state.isEditable){
         return (
-          <div>{ item.name }: { this.state.contract[item.name] }</div>
+          <tr>
+            <td>{ item.name }</td>
+            <td>{ this.state.contract[item.name] }</td>
+          </tr>
         )
       } else {
          return ( 
-          <div>{ item.name }:
-            <input type="text" 
-                   ref={ item.name }
-                   value={ this.state.contract[item.name] } 
-                   onChange={ this.updateInput.bind(this, item.name) } />
-          </div>
+            <tr>
+              <td>
+                { item.name }:
+              </td>
+              <td>
+                <input type="text" 
+                    ref={ item.name }
+                    value={ this.state.contract[item.name] } 
+                    onChange={ this.updateInput.bind(this, item.name) } />
+              </td>
+            </tr>
          );
       };
     });
@@ -75,11 +86,21 @@ class ContractRows extends Component {
     const contractDialog = () => {
       if(this.state.isVisible) {
         return (
-          <div className="contractDialog">
-            <button onClick={ this.editList.bind(this) }>edite</button>
-            <button onClick={ this.closeList.bind(this) }>x</button>
-            <button onClick={ this.props.updatelist.bind(this, this.state.contract) }>salvar</button>
-            { itemsList }
+          <div className="contract-dialog">
+            <div className="controlDialog">
+              <button className="buttom-icon" onClick={ this.editList.bind(this) }>
+                <img src={ edit }/>
+              </button>
+              <button className="buttom-icon" onClick={ this.closeList.bind(this) }>
+                <img src={ close }/>
+              </button>
+              <button className="buttom-icon" onClick={ this.props.updatelist.bind(this, this.state.contract) }>
+                <img src={ save }/>
+              </button>
+            </div>
+            <table>
+              { itemsList }
+           </table>
           </div>
         );
       };

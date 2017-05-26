@@ -1,7 +1,172 @@
-.main-color
-  color pink
-  width 200px
+/* Global
+=========================================== */
+container-spacing = 10px
+element-spacing = 5px
+primary-color = #7b327b
+secundary-color = #66217a
 
-.contractDialog
-  background pink
+devBorder()
+  border 0px solid purple
+
+spacingBox()
+  margin 10px
+  padding 10px
+
+h1, body 
+  height 100%
+
+body 
+  font-family 'Roboto', sans-serif
+
+*
+  box-sizing border-box
+
+/* Theme
+=========================================== */
+
+
+
+/* Container
+=========================================== */
+//.container
+
+/* Header
+=========================================== */
+.header 
+  background secundary-color
+  height 40px
+  width 100%
+  padding container-spacing
+
+.heading-lv1 
+  font-size 18px
+  color #fff
+  margin 0
+  font-weight 300
+  margin 0 element-spacing
+
+.heading-lv2
+  font-size 16px
+  font-weight 300
+  margin 0
+  margin element-spacing
+
+/* Main
+=========================================== */
+/*.main*/
+ 
+/* Table
+=========================================== */
+.control-container
+  devBorder()
+  display flex
+  flex-wrap wrap
+
+.control-box
+  devBorder()
+  padding container-spacing
+  width 100%
+  max-width 350px
+
+@media(max-width: 710px)
+  .control-box
+    max-width 100%
+
+.input
+  font-size 13px
+  width 100%
+  max-width 150px
+  height 30px
+  margin element-spacing
+  text-indent 5px
+
+.buttom
+  height 30px
+  padding 0 15px
+  border 0
+  margin element-spacing
+  background-image linear-gradient(to bottom, #7b327b, #8c4c8c)
+  color #fff
+  font-size 13px
+  cursor pointer
+
+.buttom:hover
+  background-image linear-gradient(to bottom, #8c4c8c, #7b327b)
+  color #fff
+
+.buttom:active
+  transform translateY(1px)
+
+.column-title-container
+  devBorder()
+  display flex
+  padding element-spacing
+  position relative
+  padding-right 30px
+
+.arrow-container
+  devBorder()
+  width 30px
+  display flex
+  flex-wrap wrap
+  align-items center
+
+.buttom-icon
+  border: 0
+  padding: 0
+  background transparent
+  cursor pointer
+  display inline-flex
+  align-items center
+
+.arrow-container .buttom-icon
+  width 100%  
+
+.icon
+  fill secundary-color
+  width 15px
+
+.title-column
+  devBorder()
+  display flex
+  align-items center
+
+.close-icon
+  devBorder()
   position absolute
+  right element-spacing
+  top element-spacing
+
+.close-icon .icon
+  width 20px
+
+.contract-table
+  border-collapse collapse
+ 
+.contract-table, th, td
+  border 1px solid #e8e5e5
+
+.column-cell
+  padding element-spacing
+  font-size 13px
+
+.table-container
+  overflow scroll
+
+.contract-row:hover 
+  cursor pointer
+
+.contract-row:nth-child(odd)
+  background #f8e8ff
+
+.contract-row:nth-child(even)
+  background #faf4fc
+
+.contract-dialog
+  position absolute
+  devBorder()
+  top 0
+  left 0
+  width 500px
+  height 600px
+  background #f8e8ff

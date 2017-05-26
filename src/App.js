@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ajax from '@fdaciuk/ajax';
 import ContractRows from './ContractRows'
+import arrowUp from './icons/arrow-up.svg'
+import arrowDown from './icons/arrow-down.svg'
+import close from './icons/close.svg'
 
 class App extends Component {
   constructor(props) {
@@ -156,10 +159,28 @@ class App extends Component {
       if(column.isActive) {
           return (
             <th key={ column.name }>
-              <button onClick={ this.sortRowsUp.bind(this, column.name) }>▲</button>
-              <button onClick={ this.sortRowsDown.bind(this, column.name) }>▼</button>
-              {column.name}
-              <button onClick={ this.removeColumn.bind(this, column.name) }>✖️</button>
+
+              {/* Column Title Container */}
+
+              <div className="column-title-container">
+
+                <div className="arrow-container">
+                  <button className="buttom-icon" onClick={ this.sortRowsUp.bind(this, column.name) }>
+                    <img className="icon" src={ arrowUp } alt="Ordenar em ordem crescente"/>
+                  </button>
+                  <button className="buttom-icon" onClick={ this.sortRowsDown.bind(this, column.name) }>
+                    <img className="icon" src={ arrowDown } alt="Ordenar em ordem decrescente"/>
+                  </button>
+                </div>
+
+                <span className="title-column">{column.name}</span>
+
+                <button className="buttom-icon close-icon" onClick={ this.removeColumn.bind(this, column.name) }>
+                  <img className="icon" src={ close } alt="Exclue a coluna"/>
+                </button>
+
+              </div>
+
             </th>
           );
         }
@@ -169,32 +190,49 @@ class App extends Component {
     return (
       <div>
 
+        {/* Header */}
+        <header className="header">
+          <h1 className="heading-lv1">Contratos</h1>
+        </header>
+
           <main>
-            <h1>Contratos</h1>
 
-            <div>
-              <select ref="searchColumn">{ activeColums }</select>
+            {/* Container */}
+            <div className="control-container">
 
-              <input onChange={ this.searchText.bind(this) } placeholder="Localizar contrato"/>
+              {/* Search for Text */}
+
+              <div className="control-box">
+                <h2 className="heading-lv2">Buscar</h2>
+                <select className="input" ref="searchColumn">{ activeColums }</select>
+                <input className="input" onChange={ this.searchText.bind(this) } placeholder="Localizar contrato"/>
+              </div>
+
+              {/* Add Columns */}
+
+              <div className="control-box">
+                <h2 className="heading-lv2">Adicionar Colunas</h2>
+                <select className="input" ref="columnName">{ noActiveColums } </select>
+                <button className="buttom" onClick={ this.addColumn.bind(this, this.refs.columnName) } >add</button>
+              </div>
+
             </div>
 
-             <div>
-              <select ref="columnName">{ noActiveColums } </select>
-              <button onClick={ this.addColumn.bind(this, this.refs.columnName) } >➕</button>
-            </div>
+            {/* Contract Table */}
+            <div className="table-container">
+              <table className="contract-table">
 
-            <table>
-              <thead>
-                <tr>
-                  { columnHeaders }
-                </tr>
-              </thead>
+                <thead>
+                  <tr>
+                    { columnHeaders }
+                  </tr>
+                </thead>
                 <ContractRows list= { this.state.list }
-                              columns= { this.state.listColumn }
-                              updatelist= { this.updateList.bind(this)} />
-            </table>
+                                columns= { this.state.listColumn }
+                                updatelist= { this.updateList.bind(this)} />
+              </table>
+            </div>
           </main>
-
       </div>
     );
   }
