@@ -1,0 +1,159 @@
+/* Global
+=========================================== */
+h1,
+body {
+  height: 100%;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+/* Theme
+=========================================== */
+/* Container
+=========================================== */
+/* Header
+=========================================== */
+.header {
+  background: #66217a;
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+}
+.heading-lv1 {
+  font-size: 18px;
+  color: #fff;
+  margin: 0;
+  font-weight: 300;
+  margin: 0 5px;
+}
+.heading-lv2 {
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  margin: 5px;
+}
+/* Main
+=========================================== */
+/*.main*/
+/* Table
+=========================================== */
+.control-container {
+  border: 0px solid #800080;
+  display: flex;
+  flex-wrap: wrap;
+}
+.control-box {
+  border: 0px solid #800080;
+  padding: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+@media (max-width: 710px) {
+  .control-box {
+    max-width: 100%;
+  }
+}
+.input {
+  font-size: 13px;
+  width: 100%;
+  max-width: 150px;
+  height: 30px;
+  margin: 5px;
+  text-indent: 5px;
+}
+.buttom {
+  height: 30px;
+  padding: 0 15px;
+  border: 0;
+  margin: 5px;
+  background-image: linear-gradient(to bottom, #7b327b, #8c4c8c);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.buttom:hover {
+  background-image: linear-gradient(to bottom, #8c4c8c, #7b327b);
+  color: #fff;
+}
+.buttom:active {
+  transform: translateY(1px);
+}
+.column-title-container {
+  border: 0px solid #800080;
+  display: flex;
+  padding: 5px;
+  position: relative;
+  padding-right: 30px;
+}
+.arrow-container {
+  border: 0px solid #800080;
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.buttom-icon {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.arrow-container .buttom-icon {
+  width: 100%;
+}
+.icon {
+  fill: #66217a;
+  width: 15px;
+}
+.title-column {
+  border: 0px solid #800080;
+  display: flex;
+  align-items: center;
+}
+.close-icon {
+  border: 0px solid #800080;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.close-icon .icon {
+  width: 20px;
+}
+.contract-table {
+  border-collapse: collapse;
+}
+.contract-table,
+th,
+td {
+  border: 1px solid #e8e5e5;
+}
+.column-cell {
+  padding: 5px;
+  font-size: 13px;
+}
+.table-container {
+  overflow: scroll;
+}
+.contract-row:hover {
+  cursor: pointer;
+}
+.contract-row:nth-child(odd) {
+  background: #f8e8ff;
+}
+.contract-row:nth-child(even) {
+  background: #faf4fc;
+}
+.contract-dialog {
+  position: absolute;
+  border: 0px solid #800080;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 600px;
+  background: #f8e8ff;
+}
