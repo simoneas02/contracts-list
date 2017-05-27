@@ -151,7 +151,10 @@ body
   font-size 13px
 
 .table-container
+  devBorder()
   overflow scroll
+  margin element-spacing
+  padding element-spacing
 
 .contract-row:hover 
   cursor pointer
@@ -162,11 +165,13 @@ body
 .contract-row:nth-child(even)
   background #faf4fc
 
+/* Table
+=========================================== */
 .contract-dialog
   position absolute
   devBorder()
-  top 0
-  left 0
+  top 200px
+  left 250px
   width 500px
   height 600px
-  background #f8e8ff
+  background primary-color

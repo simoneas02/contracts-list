@@ -44,8 +44,8 @@ class ContractRows extends Component {
       const columns = this.props.columns;
       
       const columnsList = columns.map((column) => {
-
-        if(column.isActive) {
+       
+        if(column.isActive && column.name !== "key") {
            return (
              <td className="column-cell" key = { contract[column.name] }>{ contract[column.name] }</td>
              );

@@ -26,7 +26,6 @@ class App extends Component {
           delete contract[key];
         })
       })
-      console.log(response.contracts)
       this.setState({ list: response.contracts });
       this.setState({ staticList: response.contracts});
       this.listAllColumn();
@@ -156,7 +155,8 @@ class App extends Component {
     });
 
     const columnHeaders = this.state.listColumn.map((column)=> {
-      if(column.isActive) {
+      
+      if(column.isActive && column.name !== "key") {
           return (
             <th key={ column.name }>
 

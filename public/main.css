@@ -137,7 +137,10 @@ td {
   font-size: 13px;
 }
 .table-container {
+  border: 0px solid #800080;
   overflow: scroll;
+  margin: 5px;
+  padding: 5px;
 }
 .contract-row:hover {
   cursor: pointer;
@@ -148,12 +151,14 @@ td {
 .contract-row:nth-child(even) {
   background: #faf4fc;
 }
+/* Table
+=========================================== */
 .contract-dialog {
   position: absolute;
   border: 0px solid #800080;
-  top: 0;
-  left: 0;
+  top: 200px;
+  left: 250px;
   width: 500px;
   height: 600px;
-  background: #f8e8ff;
+  background: #7b327b;
 }
