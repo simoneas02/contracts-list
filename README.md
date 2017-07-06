@@ -66,6 +66,6 @@ Este projeto é apenas para fins de processo seletivo para a vaga de Engenheiro 
 
 ## Licença
 
-[MIT License](https://github.com/simoneas02/contracts-list/blob/master/license.md) © [Simone Amorim](https://simoneas02.github.io)
+[MIT License](https://github.com/simoneas02/contracts-list/blob/master/LICENSE.md) © [Simone Amorim](https://simoneas02.github.io)
 
 
